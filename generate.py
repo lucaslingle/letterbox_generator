@@ -38,7 +38,9 @@ def works(
             s=s[1:], assignment_list=al, assignment_dict=ad, side_assignments=sa
         )
 
-    for side_id in range(4):
+    perm = np.random.permutation(4).tolist()
+    for i in range(4):
+        side_id = perm[i]
         # consecutive letters cannot be assigned to the same side.
         if side_id == assignment_list[-1]:
             continue
@@ -100,15 +102,10 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[int, List[str]]]:
 
 
 def permute_sides(side_assignments: Dict[int, List[str]]) -> Dict[int, List[str]]:
-    sp = np.random.permutation(4).tolist()
+    perm = np.random.permutation(4).tolist()
     psa = {}
     for side_id in range(4):
-        new_side_id = sp[side_id]
-        ip = np.random.permutation(3).tolist()
-        items = []
-        for i in range(3):
-            items.append(side_assignments[side_id][ip[i]])
-        psa[new_side_id] = items
+        psa[perm[side_id]] = side_assignments[side_id]
     return psa
 
 
