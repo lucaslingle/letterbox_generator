@@ -58,7 +58,7 @@ def search(
         )
 
     # we perform the search in a random order among the side assignments
-    # to prevent the puzzles from being biased towards lower complexity zip-zag
+    # to prevent the puzzles from being biased towards lower complexity zig-zag
     # style assignment patterns, which can't be undone by post-hoc permutations.
     for side_id in np.random.permutation(4).tolist():
         # consecutive letters cannot be assigned to the same side.
