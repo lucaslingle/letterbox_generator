@@ -4,6 +4,8 @@ import random
 import numpy as np
 import argparse
 
+count = 1
+
 
 def read_words(wordlist_fp: str) -> List[str]:
     list_ = []
@@ -33,6 +35,8 @@ def search(
     :param side_assignments: Dictionary mapping side IDs to lists of letters.
     :return: Side assignment dict or None.
     """
+    global count
+    count += 1
 
     # no letters left means it works.
     if len(s) == 0:
@@ -149,10 +153,13 @@ def render(side_assignments: Dict[int, List[str]]) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--wordlist_fp", type=str, default="words.txt")
+    parser.add_argument("--verbose", type=int, choices=[0, 1], default=0)
     args = parser.parse_args()
 
     w1, w2, side_assignments = sample(args.wordlist_fp)
     render(side_assignments)
+    if bool(args.verbose):
+        print(count)
 
     print_answer = input("\ngive up? [y/N]: ")
     if print_answer.lower() == "y":
