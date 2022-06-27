@@ -58,7 +58,7 @@ def search(
             last_side_id=side_id,
         )
 
-    # s[0] hasn't been assigned yet, so we assign it uniformly at random to any
+    # s[0] is a newly-seen character, so we assign it uniformly at random to any
     # open position that works, if there are any.
     blanks = set(range(12)) - (set(state.values()))
     blanks = list(blanks)
