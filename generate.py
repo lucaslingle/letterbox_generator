@@ -28,7 +28,7 @@ def search(
     :param s: String suffix yet to be assigned to sides.
     :param state: Dictionary mapping from characters to positions 0, ..., 11.
     :param last_side_id: Side ID assigned to previous character.
-    :return: Final layout state or None.
+    :return: Final state or None.
     """
     global count
     count += 1
