@@ -37,7 +37,6 @@ def works(
         al = copy.deepcopy(assignment_list)
         ad = copy.deepcopy(assignment_dict)
         sa = copy.deepcopy(side_assignments)
-        side_id = assignment_dict[s[0]]
         al.append(side_id)
         return works(
             s=s[1:], assignment_list=al, assignment_dict=ad, side_assignments=sa
