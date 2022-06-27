@@ -2110,7 +2110,6 @@ aids
 opinions
 promote
 stated
-stats
 professionals
 appears
 carry
@@ -5708,12 +5707,10 @@ socks
 validation
 parade
 corruption
-stat
 trigger
 incentives
 cholesterol
 gathered
-essex
 notified
 differential
 beaches
