@@ -7,7 +7,7 @@ import argparse
 
 def read_words(wordlist_fp: str) -> List[str]:
     list_ = []
-    with open(wordlist_fp, 'r') as f:
+    with open(wordlist_fp, "r") as f:
         for line in f.readlines():
             list_.append(line.strip())
     list_ = list(set([token.upper() for token in list_ if len(token) >= 3]))
@@ -115,29 +115,30 @@ def permute_sides(side_assignments: Dict[int, List[str]]) -> Dict[int, List[str]
 def render(side_assignments: Dict[int, List[str]]) -> None:
     shift = "".join([" "] * 40)
     print()
-    print(shift + '   ' + '   '.join(side_assignments[0]) + '   ')
+    print(shift + "   " + "   ".join(side_assignments[0]) + "   ")
     print()
     for i in range(1, 6):
         if i % 2 == 1:
             print(
-                shift + side_assignments[1][i // 2] +
-                '             ' +
-                side_assignments[2][i // 2]
+                shift
+                + side_assignments[1][i // 2]
+                + "             "
+                + side_assignments[2][i // 2]
             )
         else:
             print()
     print()
-    print(shift + '   ' + '   '.join(side_assignments[3]) + '   ')
+    print(shift + "   " + "   ".join(side_assignments[3]) + "   ")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--wordlist_fp', type=str, default='words.txt')
+    parser.add_argument("--wordlist_fp", type=str, default="words.txt")
     args = parser.parse_args()
 
     w1, w2, side_assignments = sample(args.wordlist_fp)
     render(side_assignments)
 
     print_answer = input("\ngive up? [y/N]: ")
-    if print_answer.lower() == 'y':
-        print(' '.join([w1, w2]))
+    if print_answer.lower() == "y":
+        print(" ".join([w1, w2]))

@@ -3,6 +3,7 @@ Generate NYT-style letterbox games!
 
 ### Usage
 
+We require python version >= 3.5. To generate a puzzle, simply run
 ```
 python3 generate.py
 ```
