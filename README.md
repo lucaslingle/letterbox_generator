@@ -1,5 +1,5 @@
 # letterbox_generator
-Generate NYT-style letterbox games!
+Generate NYT-style ['Letter Boxed'](https://www.nytimes.com/puzzles/letter-boxed) games!
 
 ### Usage
 
