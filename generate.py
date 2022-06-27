@@ -14,14 +14,25 @@ def read_words(wordlist_fp: str) -> List[str]:
     return list_
 
 
-def works(
+def search(
     s: str,
     assignment_list: List[int],
     assignment_dict: Dict[str, int],
     side_assignments: Dict[int, List[str]],
 ) -> Optional[Dict[int, List[str]]]:
-    # note: expects the assignment list, assignment_dict, side_assignments
-    # to each have nonzero length already.
+    """
+    Performs search, assigning the letters of s to a possible side IDs.
+    If a successful side assignment for the entire string is found, it will be returned.
+
+    This function expects assignment_list, assignment_dict, side_assignments
+    to each have nonzero length.
+
+    :param s: String suffix yet to be assigned to sides.
+    :param assignment_list: List of side IDs for omitted string prefix.
+    :param assignment_dict: Dictionary mapping letters to side IDs.
+    :param side_assignments: Dictionary mapping side IDs to lists of letters.
+    :return: Side assignment dict or None.
+    """
 
     # no letters left means it works.
     if len(s) == 0:
@@ -38,7 +49,7 @@ def works(
         ad = copy.deepcopy(assignment_dict)
         sa = copy.deepcopy(side_assignments)
         al.append(side_id)
-        return works(
+        return search(
             s=s[1:], assignment_list=al, assignment_dict=ad, side_assignments=sa
         )
 
@@ -65,7 +76,7 @@ def works(
         if side_id not in sa:
             sa[side_id] = []
         sa[side_id].append(s[0])
-        sa_new = works(
+        sa_new = search(
             s=s[1:], assignment_list=al, assignment_dict=ad, side_assignments=sa
         )
         if sa_new is not None:
@@ -84,8 +95,6 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[int, List[str]]]:
     random.shuffle(w2list)
     for w1 in w1list:
         for w2 in w2list:
-            w1 = "FUNCTIONING"
-            w2 = "GOVERNANCE"
             if w1[-1] != w2[0]:
                 continue
             if len(set(w1 + w2)) != 12:
@@ -96,7 +105,7 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[int, List[str]]]:
             assignment_list = [0]
             assignment_dict = {w1[0]: 0}
             side_assignments = {0: [w1[0]]}
-            sa_new = works(
+            sa_new = search(
                 s=s,
                 assignment_list=assignment_list,
                 assignment_dict=assignment_dict,
