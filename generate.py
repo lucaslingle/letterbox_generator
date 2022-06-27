@@ -28,7 +28,7 @@ def search(
     :param s: String suffix yet to be assigned to sides.
     :param state: Dictionary mapping from characters to positions 0, ..., 11.
     :param last_side_id: Side ID assigned to previous character.
-    :return: Side assignment dict or None.
+    :return: Final layout state or None.
     """
     global count
     count += 1
@@ -65,7 +65,7 @@ def search(
         if len([k for k, v in state.items() if v // 3 == side_id]) == 3:
             continue
 
-        # since there's nothing immediately preventing s[0] letter from being
+        # since there's nothing immediately preventing s[0] from being
         # assigned this position id, we continue our depth-first search.
         state_new = copy.deepcopy(state)
         state_new[s[0]] = pos_id
