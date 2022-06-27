@@ -1628,7 +1628,6 @@ gear
 difference
 allowed
 correct
-charles
 nation
 selling
 lots
@@ -3967,7 +3966,6 @@ nearest
 cluster
 vendors
 whereas
-yoga
 serves
 woods
 surprise
@@ -6048,7 +6046,6 @@ transparent
 nuke
 rid
 trinity
-charleston
 handled
 legends
 boom
@@ -6573,7 +6570,6 @@ gotta
 cowboy
 narrative
 enormous
-karma
 consist
 queens
 academics
@@ -7377,7 +7373,6 @@ needle
 baths
 cathedral
 brakes
-nirvana
 fairfield
 owns
 til
@@ -7409,7 +7404,6 @@ editorials
 zinc
 sacrifice
 seekers
-guru
 removable
 convergence
 yields
@@ -7430,7 +7424,6 @@ reporters
 proudly
 necessity
 rendering
-mic
 inserted
 pulling
 basename
