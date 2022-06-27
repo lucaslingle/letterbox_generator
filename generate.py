@@ -23,7 +23,7 @@ def search(
 ) -> Optional[Dict[str, int]]:
     """
     Performs search, assigning the letters of s to possible positions.
-    If a successful side assignment for the entire string is found, it will be returned.
+    If a successful layout for the entire string is found, it will be returned.
 
     :param s: String suffix yet to be assigned to sides.
     :param state: Dictionary mapping from characters to positions 0, ..., 11.
