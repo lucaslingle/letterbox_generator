@@ -7,13 +7,20 @@ import argparse
 count = 0
 
 
+def has_contiguous_repeat(w: str):
+    for i in range(0, len(w) - 1):
+        if w[i] == w[i + 1]:
+            return True
+    return False
+
+
 def read_words(wordlist_fp: str) -> List[str]:
     list_ = []
     with open(wordlist_fp, "r") as f:
         for line in f.readlines():
             list_.append(line.strip())
-    list_ = list(set([token.upper() for token in list_ if len(token) >= 3]))
-    return list_
+    set_ = {w.upper() for w in list_ if len(w) >= 3 and not has_contiguous_repeat(w)}
+    return list(set_)
 
 
 def search(
@@ -82,7 +89,7 @@ def search(
     return None
 
 
-def sample(wordlist_fp: str) -> Tuple[str, str, Dict[str, int]]:
+def sample(wordlist_fp: str, verbose: bool) -> Tuple[str, str, Dict[str, int]]:
     w1list = read_words(wordlist_fp)
     w2list = copy.deepcopy(w1list)
 
@@ -94,6 +101,8 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[str, int]]:
                 continue
             if len(set(w1 + w2)) != 12:
                 continue
+            if verbose:
+                print(w1, w2)
             # we assign the first letter uniformly at random to any position.
             pos_id = np.random.randint(0, 12)
             side_id = pos_id // 3
@@ -129,7 +138,7 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", type=int, choices=[0, 1], default=0)
     args = parser.parse_args()
 
-    w1, w2, side_assignments = sample(args.wordlist_fp)
+    w1, w2, side_assignments = sample(args.wordlist_fp, verbose=bool(args.verbose))
     render(side_assignments)
     if bool(args.verbose):
         print(count)

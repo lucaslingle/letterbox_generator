@@ -1,5 +1,5 @@
 """
-Faster script, but with a subtle statistical bias remaining.
+Older script with a subtle statistical bias remaining.
 
 Letters are assigned randomly by side_id, which means they are more likely to be
 assigned to sides where other letters already are, compared to in an algorithm where
