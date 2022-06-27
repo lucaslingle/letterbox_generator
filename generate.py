@@ -119,8 +119,8 @@ def permute_sides(side_assignments: Dict[int, List[str]]) -> Dict[int, List[str]
     for side_id in range(4):
         items = side_assignments[side_id]
         # it's not enough to shuffle the side ids.
-        # we also need to shuffle to remove the determinism of first char of first word
-        # always being assigned to first item in a side list.
+        # we also need to shuffle to remove earliness-bias, where earlier letters on
+        # any given side are more likely to occur earlier in the solution.
         random.shuffle(items)
         psa[sp[side_id]] = items
     return psa
