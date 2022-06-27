@@ -29,6 +29,11 @@ def works(
 
     # letters are always assigned to exactly one side.
     if s[0] in assignment_dict:
+        side_id = assignment_dict[s[0]]
+        # if this forced assignment causes the new letter to fall on the same side
+        # as the previous letter, we have a problem.
+        if side_id == assignment_list[-1]:
+            return None
         al = copy.deepcopy(assignment_list)
         ad = copy.deepcopy(assignment_dict)
         sa = copy.deepcopy(side_assignments)
@@ -40,9 +45,7 @@ def works(
 
     # we perform the search in a random order among the side assignments
     # to prevent the puzzles from being biased towards lower complexity assignments
-    perm = np.random.permutation(4).tolist()
-    for i in range(4):
-        side_id = perm[i]
+    for side_id in np.random.permutation(4).tolist():
         # consecutive letters cannot be assigned to the same side.
         if side_id == assignment_list[-1]:
             continue
@@ -82,6 +85,8 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[int, List[str]]]:
     random.shuffle(w2list)
     for w1 in w1list:
         for w2 in w2list:
+            w1 = "FUNCTIONING"
+            w2 = "GOVERNANCE"
             if w1[-1] != w2[0]:
                 continue
             if len(set(w1 + w2)) != 12:
