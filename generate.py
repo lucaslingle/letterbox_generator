@@ -54,7 +54,8 @@ def search(
         )
 
     # we perform the search in a random order among the side assignments
-    # to prevent the puzzles from being biased towards lower complexity assignments
+    # to prevent the puzzles from being biased towards lower complexity zip-zag
+    # style assignment patterns, which can't be undone by post-hoc permutations.
     for side_id in np.random.permutation(4).tolist():
         # consecutive letters cannot be assigned to the same side.
         if side_id == assignment_list[-1]:
@@ -100,27 +101,28 @@ def sample(wordlist_fp: str) -> Tuple[str, str, Dict[int, List[str]]]:
             if len(set(w1 + w2)) != 12:
                 continue
             # without loss of generality, we can always assign the first letter to
-            # the top, and then permute the side assignments before returning.
-            s = w1[1:] + w2[1:]
-            assignment_list = [0]
-            assignment_dict = {w1[0]: 0}
-            side_assignments = {0: [w1[0]]}
-            sa_new = search(
-                s=s,
-                assignment_list=assignment_list,
-                assignment_dict=assignment_dict,
-                side_assignments=side_assignments,
+            # side zero, and then permute the side assignments before returning.
+            sa = search(
+                s=w1[1:] + w2[1:],
+                assignment_list=[0],
+                assignment_dict={w1[0]: 0},
+                side_assignments={0: [w1[0]]},
             )
-            if sa_new is not None:
-                return w1, w2, permute_sides(sa_new)
+            if sa is not None:
+                return w1, w2, permute_sides(sa)
     raise ValueError("Couldn't find any combo with the given wordlist.")
 
 
 def permute_sides(side_assignments: Dict[int, List[str]]) -> Dict[int, List[str]]:
-    perm = np.random.permutation(4).tolist()
+    sp = np.random.permutation(4).tolist()
     psa = {}
     for side_id in range(4):
-        psa[perm[side_id]] = side_assignments[side_id]
+        items = side_assignments[side_id]
+        # it's not enough to shuffle the side ids.
+        # we also need to shuffle to remove the determinism of first char of first word
+        # always being assigned to first item in a side list.
+        random.shuffle(items)
+        psa[sp[side_id]] = items
     return psa
 
 
