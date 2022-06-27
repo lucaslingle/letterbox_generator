@@ -38,6 +38,8 @@ def works(
             s=s[1:], assignment_list=al, assignment_dict=ad, side_assignments=sa
         )
 
+    # we perform the search in a random order among the side assignments
+    # to prevent the puzzles from being biased towards lower complexity assignments
     perm = np.random.permutation(4).tolist()
     for i in range(4):
         side_id = perm[i]
