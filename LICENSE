@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+____________________________________________________________________________
+
+Data files are derived from the Google Web Trillion Word Corpus, as described by
+Thorsten Brants and Alex Franz, and distributed by the Linguistic Data Consortium.
+Subsets of this corpus distributed by Peter Norvig. Corpus editing and cleanup by
+Josh Kaufman. Educational and personal/research use of this data is permitted under the
+LDC license, Norvig's MIT license for his contributions, and US fair use doctrine.
+I do not recommend using this data for commercial purposes without licensing it from
+the Linguistic Data Consortium.
+
+____________________________________________________________________________
